@@ -10,5 +10,5 @@ urlpatterns=[
 ]
 '''
 urlpatterns = [
-    path('', views.LeerArchivoPdf, name='index'),
+    path('', views.LeerArchivoPdf, name='procesar_pdf'),
 ]
