@@ -7,7 +7,14 @@ import json
 from PIL import Image
 import pytesseract
 import fitz  # PyMuPDF para manejar PDFs
-
+import os
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
+import pickle
+from googleapiclient.http import MediaInMemoryUpload  # Importar MediaInMemoryUpload
+from google.auth.transport.requests import Request  # Importar Request para actualizar las credenciales
 
 # Configuracion Tesseract
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
@@ -132,14 +139,7 @@ class LeerArchivoPdf(APIView):
 
         except Exception as e:
             return Response({"error": f"Error al procesar el archivo PDF: {str(e)}"}, status=500) 
-import os
-from google.oauth2.credentials import Credentials
-from google_auth_oauthlib.flow import InstalledAppFlow
-from googleapiclient.discovery import build
-from googleapiclient.errors import HttpError
-import pickle
-from googleapiclient.http import MediaInMemoryUpload  # Importar MediaInMemoryUpload
-from google.auth.transport.requests import Request  # Importar Request para actualizar las credenciales
+
 
 # Definir los alcances para Google Docs y Drive
 SCOPES = ['https://www.googleapis.com/auth/drive.file', 'https://www.googleapis.com/auth/documents']
